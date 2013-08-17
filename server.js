@@ -7,8 +7,9 @@ io.sockets.on('connection', function (socket) {
     console.log(data);
   });
   socket.on('createStub', function(){
+    var deviceNumber = Math.floor(Math.random() * 10000);
     var stub = {
-      name: 'Device1',
+      name: 'Device' + deviceNumber,
       type: 'Arduino',
       actions: ['turnOn', 'turnOff', 'blinkLight'],
       channel: 'channel1'
