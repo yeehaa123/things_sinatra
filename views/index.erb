@@ -1,4 +1,9 @@
 <!doctype html>
+
+<!--[if lt IE 9]>
+<script src="dist/html5shiv.js"></script>
+<![endif]-->
+
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -9,12 +14,20 @@
 <script src="/js/jquery.hammer.js"></script>
 </head>
 <body>
-  <h1>hello</h1>
-  <div id="main" style="width:700px; margin:0 auto">
-    <ul id="devices">
-      
-    </ul>
-    
+  <nav class="nav">
+  </nav>
+  <div class="container">
+
+    <section class="body">
+      <h1>hello world</h1>
+      <div id="main" style="width:700px; margin:0 auto">
+        <ul id="devices">
+          
+        </ul>
+        
+      </div>
+    </section>
+
   </div>
   <script>
     var socket = io.connect('http://localhost:3001');
