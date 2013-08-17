@@ -43,8 +43,9 @@
        ws.onmessage = function(evt) {
         parsed = JSON.parse(evt.data);
         var method = parsed.method;
-        var args = parsed.args;
-        eval(method + '(' + args + ')');
+        var params = parsed.params;
+
+        eval(method + '(' + JSON.stringify(params) + ')');
       };
        ws.onclose = function() { debug("socket closed"); };
        ws.onopen = function() {
