@@ -11,21 +11,23 @@
 <script src="/js/socketio.js"></script>
 <script src="/js/hammer.js"></script>
 </head>
-<body>
-  <script>
-    var socket = io.connect('http://localhost:3001');
-    socket.on('news', function (data) {
-      console.log(data);
-      socket.emit('my other event', { my: 'data' });
-    });
-  </script>
-  <div class="container">
-    <nav class="nav">
-    </nav>
 
-    <div class="body">
+  <body>
+    <script>
+      var socket = io.connect('http://localhost:3001');
+      socket.on('news', function (data) {
+        console.log(data);
+        socket.emit('my other event', { my: 'data' });
+      });
+    </script>
+
+    <div class="container">
+      <nav class="nav">
+      </nav>
+
+      <section class="body">
+      </section>
+
     </div>
-
-  </div>
-</body>
+  </body>
 </html>
