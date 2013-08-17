@@ -36,44 +36,39 @@
   </ul>
 
   <script>
-    var socket = io.connect('http://localhost:3001');
-    // socket.on('news', function (data) {
-    //   console.log(data);
-    //   socket.emit('my other event', { my: 'data' });
-    // });
-    socket.on('newDevice', function(device){
-      // $('#devices').append(
-      //   '<li id="' + device.name + '" class="device">' +
-      //     device.type + ': ' + device.name +
-      //     '<br> Available actions: ' + device.actions +
-      //   '</li>'
-      //   // THIS IS WHERE BACKBONE MODEL IS CREATED
-      // );
-      
-      // deviceModel = new app.Device({
-      //   name: device.name,
-      //   type: device.type,
-      //   actions: device.actions
-      // }, {collection: app.devices});
+   $(document).ready(function(){
+       function debug(str){ $("#debug").append("<p>"+str+"</p>"); };
 
+       ws = new WebSocket("ws://localhost:8080/");
+       ws.onmessage = function(evt) {
+        parsed = JSON.parse(evt.data);
+        var method = parsed.method;
+        var args = parsed.args;
+        eval(method + '(' + args + ')');
+      };
+       ws.onclose = function() { debug("socket closed"); };
+       ws.onopen = function() {
+         debug("connected...");
+         // ws.send("hello server");
+       };
+     });
+
+    function newDevice(device) {
+      console.log("created new devices" + device);
       app.devices.add([
         {name: device.name,
          type: device.type,
          actions: device.actions}
-        ]);
-
-      // console.log(deviceModel);
-
-      // var deviceID = '#' + device.name
-      // console.log(device.name);
-      // $(deviceID).addClass('animated bounceIn');
-
-      // console.log(device);
-    });
+      ]);
+    }
 
    $('#devices').hammer().on("tap", ".device", function(event) {
       console.log(this, event);
     });
+
   </script>
+
+  <div id="debug"></div>
+    <div id="msg"></div>
 </body>
 </html>
