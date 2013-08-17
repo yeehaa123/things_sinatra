@@ -9,6 +9,8 @@
   <meta charset="UTF-8">
   <title>UI</title>
 
+  <link rel="stylesheet" href="/css/application.css">
+
   <script src="/js/backbone/components/jquery.js"></script>
   <script src="/js/backbone/components/underscore.js"></script>
   <script src="/js/backbone/components/backbone.js"></script>
@@ -23,23 +25,15 @@
   <script src="/js/backbone/routers/router.js"></script>
 
   <script src="/js/backbone/app.js"></script>
+
 </head>
 <body>
-  <nav class="nav">
-  </nav>
-  <div class="container">
+  <h1>Thingies</h1>
 
-    <section class="body">
-      <h1>hello world</h1>
-      <div id="main" style="width:700px; margin:0 auto">
-        <ul id="devices">
-          
-        </ul>
-        
-      </div>
-    </section>
+  <div id='devices'>
 
   </div>
+
   <script>
     var socket = io.connect('http://localhost:3001');
     socket.on('news', function (data) {
