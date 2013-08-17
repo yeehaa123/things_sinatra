@@ -2,7 +2,7 @@ var app = app || {};
 
 (function () {
 
-  app.Model = Backbone.Model.extend({
+  app.Device = Backbone.Model.extend({
     initialize: function(){
       
     },

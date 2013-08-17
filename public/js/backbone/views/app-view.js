@@ -12,16 +12,17 @@ var app = app || {};
       
     },
     initialize: function () {
-      
-      this.listenTo(app.models, 'add', this.addOne);
+      console.log('initialize app view');
+      this.listenTo(app.devices, 'all', this.addOne);
     },
 
     render: function () {
       
     },
 
-    addOne: function (model) {
-      var view = new app.ModelView({ model: model });
+    addOne: function (device) {
+      console.log('this executed');
+      var view = new app.DeviceView({ model: device });
       $('#devices').append(view.render().el);
     }
 
