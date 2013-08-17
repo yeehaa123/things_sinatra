@@ -14,8 +14,22 @@ var app = app || {};
     initialize: function(){
       this.$el.hammer().on("tap", function(event) {
         console.log(this, event);
-        $(this).attr('class', 'device').addClass('animated pulse');
+        $(this).attr('class', '').addClass('device animated pulse');
       });
+
+      this.$el.hammer().on("hold", function(event) {
+        console.log(this, event);
+        $(this).attr('class', 'device').addClass('active');
+        $(this).hammer().on("release", function(event) {
+          console.log(this, event);
+          $(this).attr('class', 'device');
+        });
+      });
+
+      // this.$el.hammer().on("release", function(event) {
+      //   console.log(this, event);
+      //   $(this).attr('class', 'device');
+      // });
     },
 
     render: function(){
