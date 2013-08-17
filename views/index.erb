@@ -10,6 +10,7 @@
   <title>UI</title>
 <link rel="stylesheet" href="/css/normalize.css">
 <link rel="stylesheet" href="/css/application.css">
+<link rel="stylesheet" href="/css/animate.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/js/socketio.js"></script>
 <script src="/js/hammer.js"></script>
@@ -18,9 +19,9 @@
 <body>
   <h1>Thingies</h1>
 
-  <div id='devices'>
+  <ul id='devices'>
 
-  </div>
+  </ul>
 
   <script>
     var socket = io.connect('http://localhost:3001');
@@ -28,9 +29,19 @@
       console.log(data);
       socket.emit('my other event', { my: 'data' });
     });
-    socket.on('newDevice', function(data){
-      $('#devices').append('<li class="device">' +data.type+': '+data.name+ '<br> Available actions: ' +data.actions+ '</li>');
-      console.log(data);
+    socket.on('newDevice', function(device){
+      $('#devices').append(
+        '<li id="' + device.name + '" class="device">' +
+          device.type + ': ' + device.name +
+          '<br> Available actions: ' + device.actions +
+        '</li>'
+      );
+
+      var deviceID = '#' + device.name
+      console.log(device.name);
+      $(deviceID).addClass('animated bounceIn');
+
+      console.log(device);
     });
 
    $('#devices').hammer().on("tap", ".device", function(event) {
