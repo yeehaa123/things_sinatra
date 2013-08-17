@@ -8,27 +8,38 @@
 <head>
   <meta charset="UTF-8">
   <title>UI</title>
+<link rel="stylesheet" href="../public/css/normalize.css">
+<link rel="stylesheet" href="../public/css/application.css">
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/js/socketio.js"></script>
 <script src="/js/hammer.js"></script>
 <script src="/js/jquery.hammer.js"></script>
 </head>
 <body>
-  <nav class="nav">
-  </nav>
-  <div class="container">
+  <h1>Title of Project</h1>
 
+  <div class="container">
     <section class="body">
-      <h1>hello world</h1>
       <div id="main" style="width:700px; margin:0 auto">
-        <ul id="devices">
-          
-        </ul>
-        
+
+        <div class="action">
+          <ul id="device_name">
+          </ul>
+          <ul id="device_type"> <!-- activate, deactivate, on, off, set light-level -->
+          </ul>
+        </div>
+
+        <div class="reaction">
+          <ul id="device_name">
+          </ul>
+          <ul id="device_type">
+          </ul>
+        </div>
+
       </div>
     </section>
-
   </div>
+
   <script>
     var socket = io.connect('http://localhost:3001');
     socket.on('news', function (data) {
