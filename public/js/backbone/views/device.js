@@ -4,7 +4,7 @@ var app = app || {};
 
   app.DeviceView = Backbone.View.extend({
     tagName: 'li',
-    className: 'device',
+    className: 'device animated bounceIn',
     template: _.template('<li><%= type %>: <%= name %><br>Actions: <%= actions %></li>'),
 
     events: {
