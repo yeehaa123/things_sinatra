@@ -13,7 +13,6 @@ EM.run {
 
     ws.onmessage { |msg|
       puts "Recieved message: #{msg}"
-      # ws.send "Pong: #{msg}"
       ws.send ({method: "newDevice", args: 1}.to_json)
     }
   end
