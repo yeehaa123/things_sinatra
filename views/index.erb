@@ -3,16 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <title>UI</title>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="/js/socketio.js"></script>
 <script src="/js/hammer.js"></script>
+<script src="/js/jquery.hammer.js"></script>
 </head>
 <body>
   <h1>hello</h1>
+  <div id="main" style="width:700px; margin:0 auto">
+    <ul id="devices">
+      
+    </ul>
+    
+  </div>
   <script>
     var socket = io.connect('http://localhost:3001');
     socket.on('news', function (data) {
       console.log(data);
       socket.emit('my other event', { my: 'data' });
+    });
+    socket.on('newDevice', function(data){
+      $('#devices').append('<li class="device">' +data.type+': '+data.name+ '<br> Available actions: ' +data.actions+ '</li>');
+      console.log(data);
+    });
+
+   $('#devices').hammer().on("tap", ".device", function(event) {
+      console.log(this, event);
     });
   </script>
 </body>
