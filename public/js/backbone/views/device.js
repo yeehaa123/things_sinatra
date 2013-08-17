@@ -12,7 +12,10 @@ var app = app || {};
     },
 
     initialize: function(){
-      
+      this.$el.hammer().on("tap", function(event) {
+        console.log(this, event);
+        $(this).attr('class', 'device').addClass('animated pulse');
+      });
     },
 
     render: function(){
